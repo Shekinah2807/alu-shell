@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Creates /var/run/myscript.pid containing its PID, handles SIGINT/SIGTERM/SIGQUIT,
+# cleans up the PID file, and terminates itself.
+
+echo "$$" > /var/run/myscript.pid
+
+trap 'echo "Y u no love me?!"; rm -f /var/run/myscript.pid; exit' SIGINT
+trap 'echo "I hate the kill command"; rm -f /var/run/myscript.pid; exit' SIGTERM
+trap 'rm -f /var/run/myscript.pid; exit' SIGQUIT
+
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done
