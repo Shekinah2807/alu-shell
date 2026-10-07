@@ -1,4 +1,2 @@
 #!/bin/bash
-export WATER=$(echo "$WATER" | tr 'water' '01234')
-export STIR=$(echo "$STIR" | tr 'stir.' '01234')
-printf "%x\n" $((5#$WATER + 5#$STIR)) | tr '0123456789abcdef' 'bestchol'
+printf "%x\n" $((5#$(echo $WATER | tr 'water' '01234') + 5#$(echo $STIR | tr 'stir.' '01234'))) | tr '0123456789abcdef' 'bestchol'
